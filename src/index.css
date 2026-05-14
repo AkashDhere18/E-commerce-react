@@ -1,0 +1,7 @@
+:root {
+  --ink: #111010; --gold: #C9A84C; --gold-soft: #E8C97A;
+  --cream: #F8F5EF; --warm: #EDE9E0; --border: #E2DDD4;
+  --muted: #9A9490; --white: #fff; --red: #C0392B; --green: #27AE60;
+}
+* { box-sizing: border-box; }
+body { font-family: 'DM Sans', sans-serif; background: #f0ede6; color: var(--ink); margin: 0; font-weight: 300; }

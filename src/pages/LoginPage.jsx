@@ -1,43 +1,81 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { ToastContainer, toast, Bounce } from 'react-toastify'
+import { toast, ToastContainer } from 'react-toastify'
 
-const LoginPage = () => {
+const LoginPage = ({setloggeduser}) => {
+
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [regUser, setRegUser] = useState({})
+
+    const inputEmailRef = useRef()
+
+    const navigate = useNavigate()
+
+    
+    const handelLogin = (e) => {
+        e.preventDefault()
+        const storedUser = JSON.parse(localStorage.getItem('loggedUsers'))
+        // console.log(email,password)
+        if(!storedUser){
+            alert('not registered')
+            return
+        }
+
+        if(email == storedUser.userEmail && password == storedUser.userPass){
+            // toast.success("Login successfully")
+            setloggeduser(storedUser.userName)
+            alert('succed')
+            navigate('/dashboard',)
+        }
+        else{
+            // toast.error("invalid credentials")
+            alert('invalid credentials')
+            navigate('/')
+        }
+
+        setEmail('')
+        setPassword('')
+    }
+
+    // function fetchdata(){
+    //     const regUser1 = JSON.parse(localStorage.getItem('loggedUsers'))
+    //     setRegUser(regUser1)
+    // }
+
+    useEffect(()=>{
+        inputEmailRef.current.focus()
+    },[])
+
+    // useEffect(()=>{
+    //     fetchdata()
+    // },[])
+
+
+
     return (
-        <div>
-            <div className='container w-50 p-5 mt-5 bg-info rounded'>
-                <h3>Login here...</h3>
-                <form onSubmit={handleLogin}>
-                    <div className="form-floating mb-3">
-                        <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com"
-                            // value="Jerry" 
-                            // name={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                        <label htmlFor="floatingInput">Email address</label>
-                    </div>
-                    <div className="form-floating mb-5">
-                        <input type="password" className="form-control" id="floatingPassword" placeholder="Password"
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                        <label htmlFor="floatingPassword">Password</label>
-                    </div>
-                    <button type="submit" className="btn btn-primary">Login</button>
-                    <Link to='/register' >If not registered</Link>
-                </form>
+        <div className='container mt-4 w-50 bg-info p-4 rounded '>
+            <form onSubmit={handelLogin}>
+                <h4>Login Page</h4>
+                <div className="mb-3">
+                    <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
+                    <input
+                    ref={inputEmailRef}
+                    value={email} 
+                    onChange={(e)=> { setEmail(e.target.value)}}
+                    type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" autoComplete="email"/>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
+                    <input 
+                    value={password}
+                    onChange={(e)=>{setPassword(e.target.value)}}
+                    type="password" className="form-control" id="exampleInputPassword1" autoComplete="current-password"/>
+                </div>
 
-                <ToastContainer r position="top-center"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick={false}
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="colored"
-                transition={Bounce} />
-            </div>
+                <button type="submit" className="btn btn-primary">Submit</button>
+                <Link to='/registerPage' > if not register ?</Link>
+            </form>
         </div>
     )
 }

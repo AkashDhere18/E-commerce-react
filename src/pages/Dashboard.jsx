@@ -1,8 +1,15 @@
 import React from 'react'
+import Navbar from '../components/Navbar'
+import ProductList from '../components/ProductList'
+import Footer from '../components/Footer'
 
-const Dashboard = () => {
+const Dashboard = ({loggeduser}) => {
   return (
-    <div>Dashboard</div>
+    <>
+    <Navbar loggeduser={loggeduser}/>
+    <ProductList />
+    <Footer />
+    </>
   )
 }
 
