@@ -46,16 +46,13 @@ const ProductDetails = () => {
 
     return (
         <>
-            <div>ProductDetails</div>
             {/* <h1>{product.name}</h1> */}
             <div className="comp-panel" id="panel-detail">
-                <span className="comp-label">Component: &lt;ProductDetail /&gt;</span>
                 <div className="detail-layout">
                     {/* <!-- Gallery --> */}
                     <div className="detail-gallery">
                         <div className="gallery-main">
                             <img src={product.image} className="product-detail-image img-fluid" alt="..." />
-                            <span className="gallery-dtag tag-new">New</span>
                             <span className="gallery-zoom"><i className="bi bi-zoom-in"></i> Hover to zoom</span>
                         </div>
                         <div className="thumbs-row">

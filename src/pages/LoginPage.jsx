@@ -38,18 +38,10 @@ const LoginPage = ({setloggeduser}) => {
         setPassword('')
     }
 
-    // function fetchdata(){
-    //     const regUser1 = JSON.parse(localStorage.getItem('loggedUsers'))
-    //     setRegUser(regUser1)
-    // }
 
     useEffect(()=>{
         inputEmailRef.current.focus()
     },[])
-
-    // useEffect(()=>{
-    //     fetchdata()
-    // },[])
 
 
 
